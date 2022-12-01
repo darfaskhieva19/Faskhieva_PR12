@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Фасхиева_ПР12"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Путешествуй по России" Height="750" Width="850" MaxHeight="850" MaxWidth="900">
     <Grid>
-        
+        <Frame Name="fMain" NavigationUIVisibility="Hidden">
+            
+        </Frame>
     </Grid>
 </Window>

@@ -9,6 +9,42 @@
       Title="PageTours">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="125"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <WrapPanel HorizontalAlignment="Center" Margin="7">
+            <TextBlock Text="Введите текст для поиска" />
+            <TextBox Name="tbSearch" TextChanged="tbSearch_TextChanged" Width="150"/>
+            </WrapPanel>
+            <WrapPanel HorizontalAlignment="Center" Margin="7">
+                <TextBlock Text="Выберите тип:"/>
+                <ComboBox Name="cbType" Width="250" SelectionChanged="cbType_SelectionChanged"/>
+            </WrapPanel>
+            <WrapPanel HorizontalAlignment="Center" Margin="7">
+                <CheckBox Name="chbActualTour" Checked="chbActualTour_Checked" Unchecked="chbActualTour_Checked" Content="только актуальные туры"/>
+            </WrapPanel>
+        </StackPanel>
+        <ListView Name="tours" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel HorizontalAlignment="Center"></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="1" CornerRadius="5" BorderThickness="0.5" BorderBrush="Black" >
+                        <Grid Name="gridM" Width="300" Height="300">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"/>
+                                <TextBlock />
+                                <TextBlock Text="{Binding PriceTour}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

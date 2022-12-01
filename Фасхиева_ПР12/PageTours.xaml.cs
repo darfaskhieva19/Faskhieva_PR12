@@ -23,6 +23,28 @@ namespace Фасхиева_ПР12
         public PageTours()
         {
             InitializeComponent();
+            List<Type> types = DataBase.Base.Type.ToList();
+            cbType.Items.Add("Все типы");
+            cbType.SelectedIndex = 0;
+        }
+
+        private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void chbActualTour_Checked(object sender, RoutedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void cbType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+        void Filter()
+        {
+
         }
     }
 }

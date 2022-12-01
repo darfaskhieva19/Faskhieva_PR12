@@ -92,6 +92,7 @@
     <Compile Include="Tour.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Tours.cs" />
     <Compile Include="Type.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
