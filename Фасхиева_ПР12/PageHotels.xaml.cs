@@ -16,16 +16,13 @@ using System.Windows.Shapes;
 namespace Фасхиева_ПР12
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для PageHotels.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PageHotels : Page
     {
-        public MainWindow()
+        public PageHotels()
         {
             InitializeComponent();
-            ClassFrame.frameL = fMain;
-            DataBase.Base = new travelEntities();
-            fMain.Navigate(new PageTours());
         }
     }
 }
