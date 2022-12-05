@@ -28,7 +28,7 @@ namespace Фасхиева_ПР12
 
             List<Type> types = DataBase.Base.Type.ToList();
             cbType.Items.Add("Все типы");
-            foreach(Type type in types)
+            foreach (Type type in types)
             {
                 cbType.Items.Add(type.Name);
             }
@@ -53,6 +53,8 @@ namespace Фасхиева_ПР12
         {
             List<Tour> tours = DataBase.Base.Tour.ToList();
 
+
+
             switch (cbSort.SelectedIndex)
             {
                 case 1:
@@ -63,20 +65,36 @@ namespace Фасхиева_ПР12
                     break;
             }
 
+            if (!string.IsNullOrWhiteSpace(tbSearch.Text)) 
+            {
+                tours = tours.Where(x => x.Name.ToLower().Contains(tbSearch.Text.ToLower())).ToList();
+                
+            }
+
+            if (chbActualTour.IsChecked == true)
+            {
+                tours = tours.Where(x => x.IsActual != true).ToList();
+            }
+
             //Ltours.ItemsSource = tours;
             //double sum = 0;
             //foreach (Tour tour in tours)
             //{
-            //    sum += Convert.ToDouble(tour.PriceTour)* tour.TicketCount;
+            //    sum += Convert.ToDouble(tour.PriceTour) * tour.TicketCount;
             //}
-            //tbCount.Text = "Общая стоимость: " + sum.ToString();
+            //tbCost.Text = "Общая стоимость: " + sum.ToString();
 
-            
+
         }
 
         private void btHotel_Click(object sender, RoutedEventArgs e)
         {
             ClassFrame.frameL.Navigate(new PageHotels());
+        }
+
+        private void cbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
         }
     }
 }
