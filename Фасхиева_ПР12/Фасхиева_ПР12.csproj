@@ -64,11 +64,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ClassFrame.cs" />
+    <Compile Include="classes\ClassFrame.cs" />
     <Compile Include="Country.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataBase.cs" />
+    <Compile Include="classes\DataBase.cs" />
     <Compile Include="Hotel.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -95,7 +95,7 @@
     <Compile Include="Tour.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Tours.cs" />
+    <Compile Include="classes\Tours.cs" />
     <Compile Include="Type.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -190,8 +190,8 @@
     <Resource Include="Picture\Урбанистическая Бразилия.jpg" />
     <Resource Include="Picture\Финская крепость.jpg" />
     <Resource Include="Picture\Финский романтизм.jpg" />
-    <Resource Include="image\logotip.png" />
     <Resource Include="image\picture.png" />
+    <Resource Include="image\logo.png" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
@@ -205,6 +205,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="page\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,11 +29,82 @@ namespace Фасхиева_ПР12
 
             List<Type> types = DataBase.Base.Type.ToList();
             cbType.Items.Add("Все типы");
-            foreach (Type type in types)
+            for (int i = 0; i < types.Count; i++)
             {
-                cbType.Items.Add(type.Name);
+                cbType.Items.Add(types[i].Name);
             }
             cbType.SelectedIndex = 0;
+            cbSort.SelectedIndex = 0;
+
+            Filter();
+        }
+        void Filter()
+        {
+            List<Tour> ListTours = new List<Tour>();
+            ListTours = DataBase.Base.Tour.ToList();
+
+            //string NType = cbType.SelectedValue.ToString();
+            //int index = cbType.SelectedIndex;
+            //List<TypeOfTour> TOT = DataBase.Base.TypeOfTour.Where(z=>z.Type.Name==NType).ToList();
+            //if (index != 0)
+            //{
+            //    Ltours = new List<Tour>();
+            //    foreach (TypeOfTour tr in TOT)
+            //    {
+            //        foreach(Tour tour in ListTours)
+            //        {
+            //            if(tour.Id == tr.Id)
+            //            {
+            //                Ltours.Add(tour);
+            //            }
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    Ltours = DataBase.Base.Tour.ToList();
+            //}
+
+            //поиск
+            if (!string.IsNullOrWhiteSpace(tbSearch.Text))  // если строка не пустая и если она не состоит из пробелов
+            {
+                ListTours = ListTours.Where(x => x.Name.ToLower().Contains(tbSearch.Text.ToLower())).ToList(); //поиск по наименованию
+            }
+            if (!string.IsNullOrWhiteSpace(tbSearchTour.Text)) 
+            {
+                ListTours = ListTours.Where(x=>x.Description!=null&&x.Description.ToLower().Contains(tbSearchTour.Text.ToLower())).ToList(); //поиск по описанию тура
+            }
+            // выбор элементов только с актуальными турами
+            if ((bool)chbActualTour.IsChecked==true) 
+            {
+                ListTours = ListTours.Where(x => x.IsActual != false).ToList();
+            }
+
+            switch (cbSort.SelectedIndex)
+            {
+                case 1:
+                    {
+                        ListTours.Sort((x, y) => x.Price.CompareTo(y.Price));
+                    }
+                    break;
+                case 2:
+                    {
+                        ListTours.Sort((x, y) => x.Price.CompareTo(y.Price));
+                        ListTours.Reverse();
+                    }
+                    break;
+            }
+            Ltours.ItemsSource = ListTours;
+            if (ListTours.Count == 0)
+            {
+                MessageBox.Show("нет записей");
+            }
+            double sum = 0;
+            foreach (Tour tour in ListTours)
+            {
+                sum += Convert.ToDouble(tour.Price) * tour.TicketCount;
+            }
+            tbCost.Text = "Общая стоимость туров: " + sum.ToString() + " РУБ";
         }
 
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -49,43 +121,7 @@ namespace Фасхиева_ПР12
         {
             Filter();
         }
-        void Filter()
-        {
-            List<Tour> tours = DataBase.Base.Tour.ToList();
-
-
-
-            switch (cbSort.SelectedIndex)
-            {
-                case 1:
-                    tours = tours.OrderBy(x => x.Price).ToList();
-                    break;
-                case 2:
-                    tours = tours.OrderByDescending(x => x.Price).ToList();
-                    break;
-            }
-
-            if (!string.IsNullOrWhiteSpace(tbSearch.Text)) 
-            {
-                tours = tours.Where(x => x.Name.ToLower().Contains(tbSearch.Text.ToLower())).ToList();
-                
-            }
-
-            if (chbActualTour.IsChecked == true)
-            {
-                tours = tours.Where(x => x.IsActual != true).ToList();
-            }
-
-            //Ltours.ItemsSource = tours;
-            //double sum = 0;
-            //foreach (Tour tour in tours)
-            //{
-            //    sum += Convert.ToDouble(tour.PriceTour) * tour.TicketCount;
-            //}
-            //tbCost.Text = "Общая стоимость: " + sum.ToString();
-
-
-        }
+        
 
         private void btHotel_Click(object sender, RoutedEventArgs e)
         {
@@ -95,6 +131,11 @@ namespace Фасхиева_ПР12
         private void cbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Filter();
+        }
+
+        private void tbSearchTour_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
