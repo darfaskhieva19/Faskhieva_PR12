@@ -18,7 +18,7 @@
         <TextBlock Text="Список отелей" Style="{StaticResource Header}"/>
 
         <StackPanel Grid.Row="1">
-            
+            <TextBlock Text="Актуальная информация:" />
             <GroupBox Header="Кол-во записей на странице" >
                 <TextBox Name="PageCount"/>
             </GroupBox>
