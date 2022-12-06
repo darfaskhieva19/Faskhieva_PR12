@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Фасхиева_ПР12"
         mc:Ignorable="d"
         Title="Путешествуй по России" Height="780" Width="850" MaxHeight="850" MaxWidth="900" Icon="\image\logo.png">
-    <Grid>
+    <Grid Background=" #bae3e8">
         <Frame Name="fMain" NavigationUIVisibility="Hidden">
             
         </Frame>

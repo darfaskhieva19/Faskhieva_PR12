@@ -23,6 +23,32 @@ namespace Фасхиева_ПР12
         public PageHotels()
         {
             InitializeComponent();
+            dgHotel.ItemsSource = DataBase.Base.Hotel.ToList();
+        }
+
+        private void btnAddHotels_Click(object sender, RoutedEventArgs e) 
+        {
+            ClassFrame.frameL.Navigate(new AddUpdateHotel());
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            ClassFrame.frameL.Navigate(new PageTours());
+        }
+
+        private void btnDeleteHotel_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            ClassFrame.frameL.Navigate(new AddUpdateHotel());
+        }
+
+        private void tbPrev_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

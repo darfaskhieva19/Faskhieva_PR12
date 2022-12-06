@@ -5,10 +5,57 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Фасхиева_ПР12"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="750" d:DesignWidth="850"
       Title="PageHotels">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55" />
+            <RowDefinition Height="120"/>
+            <RowDefinition />
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Список отелей" Style="{StaticResource Header}"/>
+
+        <StackPanel Grid.Row="1">
+            
+            <GroupBox Header="Кол-во записей на странице" >
+                <TextBox Name="PageCount"/>
+            </GroupBox>
+        </StackPanel>
+
+        <DataGrid Name="dgHotel" Grid.Row="2" AutoGenerateColumns="False" CanUserAddRows="False" FontSize="14">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" Width="1*"/>
+                <DataGridTextColumn Header="Кол-во звезд" Binding="{Binding CountOfStars}" Width="1*"/>
+                <DataGridTextColumn Header="Страна" Binding="{Binding Country.Name}" Width="1*"/>
+                <DataGridTextColumn Header="Кол-во туров" Binding="{Binding }" Width="1*"/>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btnUpdate" Content="Изменить" Template="{StaticResource BtnUp}" Click="btnUpdate_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <Button Name="btnBack" Content="Вернуться к списку туров" Template="{StaticResource Btn}" Click="btnBack_Click"/>
+            <Button Name="btnAddHotels" Content="Добавить отель" Template="{StaticResource Btn1}" Click="btnAddHotels_Click"/>
+            <Button Name="btnDeleteHotel" Content="Удалить отель" Template="{StaticResource Btn1}" Click="btnDeleteHotel_Click"/>
+
+            <!--<StackPanel Orientation="Horizontal" Margin="5"  HorizontalAlignment="Right">
+                <TextBlock Name="tbFirstPages" Uid="first" Text=" &lt;&lt; " MouseDown="tbPrev_MouseDown"/>
+                <TextBlock Name="tbPrev" Uid="prev" Text=" &lt; " MouseDown="tbPrev_MouseDown"/>
+                <TextBlock Name="txt1" Uid="1" Text="{Binding  Path = NPage[0]}" Visibility="{Binding Visible[0]}" FontWeight="{Binding Bold[0]}" MouseDown=""/>
+                <TextBlock Name="txt2" Uid="2" Text="{Binding  Path = NPage[1]}" Visibility="{Binding Visible[1]}" FontWeight="{Binding Bold[1]}" MouseDown="tbPrev_MouseDown"/>
+                <TextBlock Name="txt3" Uid="3" Text="{Binding  Path = NPage[2]}" Visibility="{Binding Visible[2]}" FontWeight="{Binding Bold[2]}" MouseDown="tbPrev_MouseDown"/>
+                <TextBlock Name="txt4" Uid="4" Text="{Binding  Path = NPage[3]}" Visibility="{Binding Visible[3]}" FontWeight="{Binding Bold[3]}" MouseDown="tbPrev_MouseDown"/>
+                <TextBlock Name="txt5" Uid="5" Text="{Binding  Path = NPage[4]}" Visibility="{Binding Visible[4]}" FontWeight="{Binding Bold[4]}" MouseDown="tbPrev_MouseDown"/>
+                <TextBlock Name="tbNext" Uid="next" Text=" &gt;" MouseDown="tbPrev_MouseDown"/>
+                <TextBlock Name="tbLastPages" Uid="last" Text=" &gt;&gt;" MouseDown="tbPrev_MouseDown"/>
+            </StackPanel>-->
+        </StackPanel>
     </Grid>
 </Page>
