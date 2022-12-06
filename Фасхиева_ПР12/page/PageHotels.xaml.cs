@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,6 +22,7 @@ namespace Фасхиева_ПР12
     public partial class PageHotels : Page
     {
         ClassChange pc = new ClassChange();
+        List<Hotel> lHotel = new List<Hotel>();
         public PageHotels()
         {
             InitializeComponent();
@@ -47,10 +49,13 @@ namespace Фасхиева_ПР12
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
+            Button btn = (Button)sender;
+            int index = Convert.ToInt32(btn.Uid);
+            Hotel hotel = DataBase.Base.Hotel.FirstOrDefault(x => x.Id == index);
             ClassFrame.frameL.Navigate(new AddUpdateHotel());
         }
 
-        private void tbPrev_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Page_MouseDown(object sender, MouseButtonEventArgs e)
         {
             TextBlock tb = (TextBlock)sender;
 
@@ -62,9 +67,28 @@ namespace Фасхиева_ПР12
                 case "next":
                     pc.CurrentPage++;
                     break;
+                case "first":
+                    pc.CurrentPage = 1;
+                    break;
+                case "last":
+                    pc.CurrentPage = pc.CountPages;
+                    break;
                 default:
                     pc.CurrentPage = Convert.ToInt32(tb.Text);
                     break;
+            }
+        }
+
+        private void PageCount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+           
+        }
+
+        private void PageCount_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!(Char.IsDigit(e.Text, 0)))
+            {
+                e.Handled = true;
             }
         }
     }

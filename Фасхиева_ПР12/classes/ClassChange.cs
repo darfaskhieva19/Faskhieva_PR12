@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace Фасхиева_ПР12
 {
-    internal class ClassChange
+    internal class ClassChange : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;  //событие, для изменения значения одного из массивов свойств, описанных ниже
         static int countitems = 5; //количество объектов для отображения (1 2 3 4 5)

@@ -27,7 +27,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             
-            <StackPanel Grid.Column="0" Margin="10">
+            <StackPanel Grid.Column="0" Margin="10" HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="2">
                     <TextBlock Text="Введите наименование тура: " VerticalAlignment="Center"/>
                     <TextBox Name="tbSearch" Width="170" Height="30" TextChanged="tbSearch_TextChanged"/>
@@ -40,19 +40,18 @@
                     <TextBlock Text="Выберите тип: " VerticalAlignment="Center"/>
                     <ComboBox Name="cbType" Width="250" Height="30" IsEditable="True" IsReadOnly="True" SelectionChanged="cbType_SelectionChanged"/>
                 </StackPanel>
-                <CheckBox Name="chbActualTour" Checked="chbActualTour_Checked" Unchecked="chbActualTour_Checked" Content="только актуальные туры" HorizontalAlignment="Center" Margin="4"/>
+                <CheckBox Name="chbActualTour" Checked="chbActualTour_Checked" Unchecked="chbActualTour_Checked" Content="только актуальные туры" HorizontalAlignment="Right" Margin="4"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Margin="10">
+                <TextBlock Text="Общая стоимость туров:" HorizontalAlignment="Right"/>
                 <TextBlock Name="tbCost" HorizontalAlignment="Right" VerticalAlignment="Top"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <TextBlock Margin="3">Сортировка по <LineBreak /> стоимости тура</TextBlock>
-                    <ComboBox Name="cbSort" Width="180" Height="30" IsEditable="True" IsReadOnly="True" Margin="3" SelectionChanged="cbSort_SelectionChanged">
-                        <ComboBoxItem>Без сортировки</ComboBoxItem>
-                        <ComboBoxItem>По возрастанию</ComboBoxItem>
-                        <ComboBoxItem>По убыванию</ComboBoxItem>
-                    </ComboBox>
-                </StackPanel>
+                <TextBlock Margin="3" Text="Сортировка по стоимости тура" HorizontalAlignment="Right"/>
+                <ComboBox Name="cbSort" Width="180" Height="30" IsEditable="True" IsReadOnly="True" Margin="3" HorizontalAlignment="Right" SelectionChanged="cbSort_SelectionChanged">
+                    <ComboBoxItem>Без сортировки</ComboBoxItem>
+                    <ComboBoxItem>По возрастанию</ComboBoxItem>
+                    <ComboBoxItem>По убыванию</ComboBoxItem>
+                </ComboBox>
             </StackPanel>
         </Grid>        
 
@@ -69,11 +68,11 @@
                             <StackPanel Margin="5">
                                 <TextBlock Text="{Binding Name}" TextWrapping="Wrap" TextAlignment="Center"/>
                                 <Image Height="130" Source="{Binding ImagePreview, TargetNullValue={StaticResource NoImage}}" Margin="0, 5, 0, 5"/>
-                                <TextBlock Text="{Binding PriceTour}" HorizontalAlignment="Center"/>
-                                <Grid Margin="5">
+                                <TextBlock Text="{Binding Price, StringFormat={}{0:F3} РУБ}" HorizontalAlignment="Center"/>
+                                <DockPanel Margin="0,10,0,0">
                                     <TextBlock Text="{Binding Actual}" HorizontalAlignment="Left" Margin="5, 0, 0, 0" Foreground="{Binding ColorActual}"/>
                                     <TextBlock Text="{Binding TicketCount, StringFormat={}Билетов: {0}}" HorizontalAlignment="Right" Margin="0, 0, 5, 0"/>
-                                </Grid>
+                                </DockPanel>
                             </StackPanel>
                         </Grid>
                     </Border>

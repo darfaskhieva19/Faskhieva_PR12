@@ -14,21 +14,25 @@
             <RowDefinition Height="6*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Добавление отеля" Style="{StaticResource Header}"/>
+        <TextBlock Grid.Row="0" Name="tbTxtHeader" Text="Добавление отеля" Style="{StaticResource Header}"/>
 
         <StackPanel Grid.Row="1">
             <GroupBox Header="Наименование отеля">
                 <TextBox Name="tbNameHotel"/>
             </GroupBox>
             <GroupBox Header="Количество звезд">
-                <TextBox Name="tbCountStars"/>
+                <TextBox Name="tbCountStars" PreviewTextInput="tbCountStars_PreviewTextInput"/>
             </GroupBox>
             <GroupBox Header="Описание">
-                <TextBox Name="tbDescription"/>
+                <TextBox Name="tbDescription" TextWrapping="Wrap" Height="85"/>
             </GroupBox>
             <GroupBox Header="Выберите страну">
-                <ComboBox Name="cbCountry"/>
+                <ComboBox Name="cbCountry" IsEditable="True" IsReadOnly="True"/>
             </GroupBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button Content="Сохранить" Name="btnSave" Click="btnSave_Click" Template="{StaticResource Btn1}"/>
+        <Button Content="Вернуться" Name="btnBack" Click="btnBack_Click" Template="{StaticResource Btn1}"/>
         </StackPanel>
     </Grid>
 </Page>

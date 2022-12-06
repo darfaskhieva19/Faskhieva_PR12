@@ -9,13 +9,6 @@ namespace Фасхиева_ПР12
 {
     public partial class Tour
     {
-        public string PriceTour
-        {
-            get
-            {
-                return Price + "РУБ";
-            }
-        }
         public string Actual
         {
             get

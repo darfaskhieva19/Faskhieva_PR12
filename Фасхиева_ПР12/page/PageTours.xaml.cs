@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace Фасхиева_ПР12
     /// </summary>
     public partial class PageTours : Page
     {
+        List<Tour> listFilter = new List<Tour>();
         public PageTours()
         {
             InitializeComponent();
@@ -37,74 +39,72 @@ namespace Фасхиева_ПР12
             cbSort.SelectedIndex = 0;
 
             Filter();
+            tbCost.Text = GetCost(DataBase.Base.Tour.ToList()).ToString() + " РУБ";
+        }
+        private double GetCost(List<Tour> tours)
+        {
+            double sum = 0;
+            foreach (Tour tour in tours)
+            {
+                sum += (double)tour.Price * (double)tour.TicketCount;
+            }
+            return sum;
         }
         void Filter()
         {
-            List<Tour> ListTours = new List<Tour>();
-            ListTours = DataBase.Base.Tour.ToList();
+            string name = cbType.SelectedValue.ToString();
+            int index = cbType.SelectedIndex;
+            List<TypeOfTour> typeTour = DataBase.Base.TypeOfTour.ToList();
+            if (index != 0)
+            {
+                listFilter = new List<Tour>();
+                foreach (TypeOfTour tt in typeTour)
+                {
+                    if (tt.TypeId == index)
+                    {
+                        listFilter.Add(tt.Tour);
+                    }
 
-            //string NType = cbType.SelectedValue.ToString();
-            //int index = cbType.SelectedIndex;
-            //List<TypeOfTour> TOT = DataBase.Base.TypeOfTour.Where(z=>z.Type.Name==NType).ToList();
-            //if (index != 0)
-            //{
-            //    Ltours = new List<Tour>();
-            //    foreach (TypeOfTour tr in TOT)
-            //    {
-            //        foreach(Tour tour in ListTours)
-            //        {
-            //            if(tour.Id == tr.Id)
-            //            {
-            //                Ltours.Add(tour);
-            //            }
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    Ltours = DataBase.Base.Tour.ToList();
-            //}
-
+                }               
+            }
+            else
+            {
+                listFilter = DataBase.Base.Tour.ToList();
+            }
             //поиск
             if (!string.IsNullOrWhiteSpace(tbSearch.Text))  // если строка не пустая и если она не состоит из пробелов
             {
-                ListTours = ListTours.Where(x => x.Name.ToLower().Contains(tbSearch.Text.ToLower())).ToList(); //поиск по наименованию
+                listFilter = listFilter.Where(x => x.Name.ToLower().Contains(tbSearch.Text.ToLower())).ToList(); //поиск по наименованию
             }
             if (!string.IsNullOrWhiteSpace(tbSearchTour.Text)) 
             {
-                ListTours = ListTours.Where(x=>x.Description!=null&&x.Description.ToLower().Contains(tbSearchTour.Text.ToLower())).ToList(); //поиск по описанию тура
+                listFilter = listFilter.Where(x=>x.Description!=null&&x.Description.ToLower().Contains(tbSearchTour.Text.ToLower())).ToList(); //поиск по описанию тура
             }
             // выбор элементов только с актуальными турами
             if ((bool)chbActualTour.IsChecked==true) 
             {
-                ListTours = ListTours.Where(x => x.IsActual != false).ToList();
+                listFilter = listFilter.Where(x => x.IsActual != false).ToList();
             }
-
+            //сортировка
             switch (cbSort.SelectedIndex)
             {
                 case 1:
                     {
-                        ListTours.Sort((x, y) => x.Price.CompareTo(y.Price));
+                        listFilter.Sort((x, y) => x.Price.CompareTo(y.Price));
                     }
                     break;
                 case 2:
                     {
-                        ListTours.Sort((x, y) => x.Price.CompareTo(y.Price));
-                        ListTours.Reverse();
+                        listFilter.Sort((x, y) => x.Price.CompareTo(y.Price));
+                        listFilter.Reverse();
                     }
                     break;
             }
-            Ltours.ItemsSource = ListTours;
-            if (ListTours.Count == 0)
+            Ltours.ItemsSource = listFilter;
+            if (listFilter.Count == 0)
             {
                 MessageBox.Show("нет записей");
-            }
-            double sum = 0;
-            foreach (Tour tour in ListTours)
-            {
-                sum += Convert.ToDouble(tour.Price) * tour.TicketCount;
-            }
-            tbCost.Text = "Общая стоимость туров: " + sum.ToString() + " РУБ";
+            }             
         }
 
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
