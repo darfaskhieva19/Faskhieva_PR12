@@ -27,7 +27,7 @@ namespace Фасхиева_ПР12
         {
             InitializeComponent();
             dgHotel.ItemsSource = DataBase.Base.Hotel.ToList();
-
+            lHotel = DataBase.Base.Hotel.ToList();
             pc.CountPage = DataBase.Base.Hotel.ToList().Count;
             DataContext = pc;
         }
@@ -77,22 +77,22 @@ namespace Фасхиева_ПР12
                     pc.CurrentPage = Convert.ToInt32(tb.Text);
                     break;
             }
-           dgHotel.ItemsSource = lHotel.Skip(pc.CurrentPage * pc.CountPage - pc.CountPage).Take(pc.CountPage).ToList();
+            dgHotel.ItemsSource = lHotel.Skip(pc.CurrentPage * pc.CountPage -pc.CountPage).Take(pc.CountPage).ToList();  
         }
 
         private void PageCount_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //try
-            //{
-            //    pc.CountPage = Convert.ToInt32(PageCount.Text); // если в текстовом поле есnь значение, присваиваем его свойству объекта, которое хранит количество записей на странице
-            //}
-            //catch
-            //{
-            //    pc.CountPage = lHotel.Count; // если в текстовом поле значения нет, присваиваем свойству объекта, которое хранит количество записей на странице количество элементов в списке
-            //}
-            //pc.Countlist = lHotel.Count;  // присваиваем новое значение свойству, которое в объекте отвечает за общее количество записей
-            //dgHotel.ItemsSource = lHotel.Skip(0).Take(pc.CountPage).ToList();  // отображаем первые записи в том количестве, которое равно CountPage
-            //pc.CurrentPage = 1; // текущая страница - это страница 1
+            try
+            {
+                pc.CountPage = Convert.ToInt32(PageCount.Text); // если в текстовом поле есnь значение, присваиваем его свойству объекта, которое хранит количество записей на странице
+            }
+            catch
+            {
+                pc.CountPage = 10; // если в текстовом поле значения нет, присваиваем свойству объекта, которое хранит количество записей на странице количество элементов в списке
+            }
+            pc.Countlist = lHotel.Count;  // присваиваем новое значение свойству, которое в объекте отвечает за общее количество записей
+            dgHotel.ItemsSource = lHotel.Skip(0).Take(pc.CountPage).ToList();  // отображаем первые записи в том количестве, которое равно CountPage
+            pc.CurrentPage = 1; // текущая страница - это страница 1
         }
 
         private void PageCount_PreviewTextInput(object sender, TextCompositionEventArgs e)
