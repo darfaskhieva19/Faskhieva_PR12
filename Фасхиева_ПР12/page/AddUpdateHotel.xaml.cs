@@ -57,28 +57,34 @@ namespace Фасхиева_ПР12
         {
             try
             {
-                if (flag == false)
-                {
-                    hotel = new Hotel();
-                }
-                hotel.Name = tbNameHotel.Text;
-                hotel.CountOfStars = Convert.ToInt32(tbCountStars.Text);
-                hotel.CountryCode = Convert.ToString(cbCountry.SelectedValue);
-                hotel.Description = Convert.ToString(tbDescription.Text);
-                if (flag == false)
-                {
-                    DataBase.Base.Hotel.Add(hotel);
-                }
-                DataBase.Base.SaveChanges();
-                if (flag == true)
-                {
-                    MessageBox.Show("Запись изменена!");
-                }
-                else
-                {
-                    MessageBox.Show("Запись добавлена!");
-                }
-                ClassFrame.frameL.Navigate(new PageHotels());
+                //if (tbNameHotel.Text == "" || tbCountStars.Text == "" || tbDescription.Text == "" || cbCountry.SelectedIndex != 0)
+                //{
+                //    MessageBox.Show("Заполните поля!");
+                //}
+                //else {
+                    if (flag == false)
+                    {
+                        hotel = new Hotel();
+                    }
+                    hotel.Name = tbNameHotel.Text;
+                    hotel.CountOfStars = Convert.ToInt32(tbCountStars.Text);
+                    hotel.CountryCode = Convert.ToString(cbCountry.SelectedValue);
+                    hotel.Description = Convert.ToString(tbDescription.Text);
+                    if (flag == false)
+                    {
+                        DataBase.Base.Hotel.Add(hotel);
+                    }
+                    DataBase.Base.SaveChanges();
+                    if (flag == true)
+                    {
+                        MessageBox.Show("Запись изменена!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Запись добавлена!");
+                    }
+                    ClassFrame.frameL.Navigate(new PageHotels());
+                //}
             }
             catch
             {
@@ -95,7 +101,7 @@ namespace Фасхиева_ПР12
 
         private void tbCountStars_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (!((e.Text == "1") || (e.Text == "2") || (e.Text == "3") || (e.Text == "4") || (e.Text == "5")))
+            if (!((e.Text == "0") || (e.Text == "1") || (e.Text == "2") || (e.Text == "3") || (e.Text == "4") || (e.Text == "5")))
             {
                 e.Handled = true;
             }

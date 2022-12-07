@@ -34,7 +34,7 @@ namespace Фасхиева_ПР12
                 }
                 else
                 {
-                    SolidColorBrush NoActual = new SolidColorBrush(Color.FromRgb(242, 80, 80));
+                    SolidColorBrush NoActual = new SolidColorBrush(Color.FromRgb(227, 30, 36));
                     return NoActual;
                 }
             }

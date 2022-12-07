@@ -5,34 +5,36 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Фасхиева_ПР12"
       mc:Ignorable="d" 
-      d:DesignHeight="750" d:DesignWidth="800"
+      d:DesignHeight="570" d:DesignWidth="800"
       Title="AddUpdateHotel">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="55"/>
             <RowDefinition Height="6*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="55"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Name="tbTxtHeader" Text="Добавление отеля" Style="{StaticResource Header}"/>
 
-        <StackPanel Grid.Row="1">
-            <GroupBox Header="Наименование отеля">
+        <StackPanel Grid.Row="1" Margin="5">
+            <GroupBox Header="Наименование отеля" Style="{StaticResource GBAdd}">
                 <TextBox Name="tbNameHotel"/>
             </GroupBox>
-            <GroupBox Header="Количество звезд">
+            <GroupBox Header="Количество звезд" Style="{StaticResource GBAdd}">
                 <TextBox Name="tbCountStars" PreviewTextInput="tbCountStars_PreviewTextInput"/>
             </GroupBox>
-            <GroupBox Header="Описание">
-                <TextBox Name="tbDescription" TextWrapping="Wrap" Height="85"/>
+            <GroupBox Header="Описание" Style="{StaticResource GBDesc}">
+                <TextBox Name="tbDescription" TextWrapping="Wrap" />
             </GroupBox>
-            <GroupBox Header="Выберите страну">
+            <GroupBox Header="Выберите страну" Style="{StaticResource GBAdd}">
                 <ComboBox Name="cbCountry" IsEditable="True" IsReadOnly="True"/>
             </GroupBox>
+            <WrapPanel HorizontalAlignment="Center" Margin="25">
+                <Button Name="btnSave" Click="btnSave_Click" Content="Добавить отель" Template="{StaticResource Btn1}"/>
+            </WrapPanel>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Button Content="Добавить отель" Name="btnSave" Click="btnSave_Click" Template="{StaticResource Btn1}"/>
-        <Button Content="Вернуться" Name="btnBack" Click="btnBack_Click" Template="{StaticResource Btn1}"/>
+            <Button Name="btnBack" Click="btnBack_Click" Content="Вернуться к отелям" Template="{StaticResource Btn}"/>
         </StackPanel>
     </Grid>
 </Page>

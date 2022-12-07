@@ -38,22 +38,22 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="2">
                     <TextBlock Text="Выберите тип: " VerticalAlignment="Center"/>
-                    <ComboBox Name="cbType" Width="250" Height="30" IsEditable="True" IsReadOnly="True" SelectionChanged="cbType_SelectionChanged"/>
+                    <ComboBox Name="cbType" Width="250" Height="30" IsEditable="True" IsReadOnly="True" SelectionChanged="cbType_SelectionChanged" Style="{StaticResource CBox}"/>
                 </StackPanel>
                 <CheckBox Name="chbActualTour" Checked="chbActualTour_Checked" Unchecked="chbActualTour_Checked" Content="только актуальные туры" HorizontalAlignment="Right" Margin="4"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Margin="10">
                 <TextBlock Text="Общая стоимость туров:" HorizontalAlignment="Right"/>
-                <TextBlock Name="tbCost" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                <TextBlock Name="tbCost" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="#445c93" FontWeight="Bold"/>
                 <TextBlock Margin="3" Text="Сортировка по стоимости тура" HorizontalAlignment="Right"/>
-                <ComboBox Name="cbSort" Width="180" Height="30" IsEditable="True" IsReadOnly="True" Margin="3" HorizontalAlignment="Right" SelectionChanged="cbSort_SelectionChanged">
+                <ComboBox Name="cbSort" Width="180" Height="30" IsEditable="True" IsReadOnly="True" Margin="3" HorizontalAlignment="Right" SelectionChanged="cbSort_SelectionChanged" Style="{StaticResource CBox}">
                     <ComboBoxItem>Без сортировки</ComboBoxItem>
                     <ComboBoxItem>По возрастанию</ComboBoxItem>
                     <ComboBoxItem>По убыванию</ComboBoxItem>
                 </ComboBox>
             </StackPanel>
-        </Grid>        
+        </Grid>
 
         <ListView Name="Ltours" Grid.Row="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemsPanel>

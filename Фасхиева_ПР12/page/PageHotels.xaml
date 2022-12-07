@@ -11,34 +11,38 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="55" />
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="65"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <TextBlock Text="Список отелей" Style="{StaticResource Header}"/>
 
-        <WrapPanel Grid.Row="1">
-            <StackPanel HorizontalAlignment="Left">
-            <GroupBox Header="Кол-во записей на 1-ой странице">
-                <TextBox Name="PageCount" TextChanged="PageCount_TextChanged" PreviewTextInput="PageCount_PreviewTextInput" Width="250" Height="30"/>
-            </GroupBox>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <GroupBox Header="Кол-во записей на 1-ой странице" Style="{StaticResource GBList}">
+                    <TextBox Name="PageCount" TextChanged="PageCount_TextChanged" PreviewTextInput="PageCount_PreviewTextInput" Width="250" Height="30"/>
+                </GroupBox>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-            <TextBlock Name="tbFirstPages" Uid="first" Text=" &lt;&lt; " MouseDown="Page_MouseDown"/>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center" Cursor="Hand">
+                <TextBlock Name="tbFirstPages" Uid="first" Text=" &lt;&lt; " MouseDown="Page_MouseDown"/>
                 <TextBlock Name="tbPrev" Uid="prev" Text=" &lt; " MouseDown="Page_MouseDown"/>
-                <TextBlock Name="txt1" Uid="1" Text="{Binding  Path = NPage[0]}" Visibility="{Binding Visible[0]}" FontWeight="{Binding Bold[0]}" MouseDown="Page_MouseDown"/>
-                <TextBlock Name="txt2" Uid="2" Text="{Binding  Path = NPage[1]}" Visibility="{Binding Visible[1]}" FontWeight="{Binding Bold[1]}" MouseDown="Page_MouseDown"/>
-                <TextBlock Name="txt3" Uid="3" Text="{Binding  Path = NPage[2]}" Visibility="{Binding Visible[2]}" FontWeight="{Binding Bold[2]}" MouseDown="Page_MouseDown"/>
-                <TextBlock Name="txt4" Uid="4" Text="{Binding  Path = NPage[3]}" Visibility="{Binding Visible[3]}" FontWeight="{Binding Bold[3]}" MouseDown="Page_MouseDown"/>
-                <TextBlock Name="txt5" Uid="5" Text="{Binding  Path = NPage[4]}" Visibility="{Binding Visible[4]}" FontWeight="{Binding Bold[4]}" MouseDown="Page_MouseDown"/>
+                <TextBlock Style="{StaticResource TBPage}" Name="txt1" Uid="1" Text="{Binding  Path = NPage[0]}" Visibility="{Binding Visible[0]}" FontWeight="{Binding Bold[0]}" MouseDown="Page_MouseDown"/>
+                <TextBlock Style="{StaticResource TBPage}" Name="txt2" Uid="2" Text="{Binding  Path = NPage[1]}" Visibility="{Binding Visible[1]}" FontWeight="{Binding Bold[1]}" MouseDown="Page_MouseDown"/>
+                <TextBlock Style="{StaticResource TBPage}" Name="txt3" Uid="3" Text="{Binding  Path = NPage[2]}" Visibility="{Binding Visible[2]}" FontWeight="{Binding Bold[2]}" MouseDown="Page_MouseDown"/>
+                <TextBlock Style="{StaticResource TBPage}" Name="txt4" Uid="4" Text="{Binding  Path = NPage[3]}" Visibility="{Binding Visible[3]}" FontWeight="{Binding Bold[3]}" MouseDown="Page_MouseDown"/>
+                <TextBlock Style="{StaticResource TBPage}" Name="txt5" Uid="5" Text="{Binding  Path = NPage[4]}" Visibility="{Binding Visible[4]}" FontWeight="{Binding Bold[4]}" MouseDown="Page_MouseDown"/>
                 <TextBlock Name="tbNext" Uid="next" Text=" &gt;" MouseDown="Page_MouseDown"/>
-            <TextBlock Name="tbLastPages" Uid="last" Text=" &gt;&gt;" MouseDown="Page_MouseDown"/>
+                <TextBlock Name="tbLastPages" Uid="last" Text=" &gt;&gt;" MouseDown="Page_MouseDown" Cursor="Hand"/>
             </StackPanel>
-        </WrapPanel>
+        </Grid>
 
         <DataGrid Name="dgHotel" Grid.Row="2" AutoGenerateColumns="False" CanUserAddRows="False" FontSize="14">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" Width="1*"/>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" Width="2*"/>
                 <DataGridTextColumn Header="Кол-во звезд" Binding="{Binding CountOfStars}" Width="1*"/>
                 <DataGridTextColumn Header="Страна" Binding="{Binding Country.Name}" Width="1*"/>
                 <DataGridTextColumn Header="Кол-во туров" Binding="{Binding CountTour}" Width="1*"/>
@@ -51,11 +55,19 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        
-        <StackPanel Grid.Row="3" Orientation="Horizontal">
-            <Button Name="btnBack" Content="Вернуться" Template="{StaticResource Btn1}" Click="btnBack_Click"/>
-            <Button Name="btnAddHotels" Content="Добавить отель" Template="{StaticResource Btn1}" Click="btnAddHotels_Click"/>
-            <Button Name="btnDeleteHotel" Content="Удалить отель" Template="{StaticResource Btn1}" Click="btnDeleteHotel_Click"/>           
-        </StackPanel>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" HorizontalAlignment="Left">
+                <Button Name="btnBack" Content="Вернуться" Template="{StaticResource Btn1}" Click="btnBack_Click"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right"> 
+                <Button Name="btnDeleteHotel" Content="Удалить отель" Template="{StaticResource Btn1}" Click="btnDeleteHotel_Click"/>
+                <Button Name="btnAddHotels" Content="Добавить отель" Template="{StaticResource Btn1}" Click="btnAddHotels_Click"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>
