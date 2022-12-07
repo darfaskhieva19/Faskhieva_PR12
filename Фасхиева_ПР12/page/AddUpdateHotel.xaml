@@ -31,7 +31,7 @@
             </GroupBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Button Content="Сохранить" Name="btnSave" Click="btnSave_Click" Template="{StaticResource Btn1}"/>
+            <Button Content="Добавить отель" Name="btnSave" Click="btnSave_Click" Template="{StaticResource Btn1}"/>
         <Button Content="Вернуться" Name="btnBack" Click="btnBack_Click" Template="{StaticResource Btn1}"/>
         </StackPanel>
     </Grid>

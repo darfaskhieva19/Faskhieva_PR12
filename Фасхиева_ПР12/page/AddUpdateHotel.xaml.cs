@@ -36,7 +36,7 @@ namespace Фасхиева_ПР12
             this.hotel = hotel;
             tbTxtHeader.Text = "Изменение отеля";
             btnSave.Content = "Изменить";
-            tbNameHotel.Text = Name;
+            tbNameHotel.Text = hotel.Name;
             tbCountStars.Text = Convert.ToString(hotel.CountOfStars);
             cbCountry.SelectedValue = hotel.CountryCode;
             tbDescription.Text = hotel.Description;
@@ -95,7 +95,10 @@ namespace Фасхиева_ПР12
 
         private void tbCountStars_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-
+            if (!((e.Text == "1") || (e.Text == "2") || (e.Text == "3") || (e.Text == "4") || (e.Text == "5")))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

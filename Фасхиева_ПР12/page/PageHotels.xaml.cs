@@ -52,7 +52,7 @@ namespace Фасхиева_ПР12
             Button btn = (Button)sender;
             int index = Convert.ToInt32(btn.Uid);
             Hotel hotel = DataBase.Base.Hotel.FirstOrDefault(x => x.Id == index);
-            ClassFrame.frameL.Navigate(new AddUpdateHotel());
+            ClassFrame.frameL.Navigate(new AddUpdateHotel(hotel));
         }
 
         private void Page_MouseDown(object sender, MouseButtonEventArgs e)
@@ -77,6 +77,7 @@ namespace Фасхиева_ПР12
                     pc.CurrentPage = Convert.ToInt32(tb.Text);
                     break;
             }
+            //lHotel.ItemsSource = hotels.Skip(ClassChange.CurrentPage * ClassChange.CountPage - ClassChange.CountPage).Take(ClassChange.CountPage).ToList();
         }
 
         private void PageCount_TextChanged(object sender, TextChangedEventArgs e)
