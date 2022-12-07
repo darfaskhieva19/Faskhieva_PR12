@@ -57,31 +57,56 @@ namespace Фасхиева_ПР12
         {
             try
             {
-                //if (tbNameHotel.Text != "" && tbCountStars.Text != "" && tbDescription.Text != "" && cbCountry.SelectedIndex != 0)
-                //{
-                    if (flag == false)
+                if (tbNameHotel.Text != "")
+                {
+                    if (tbCountStars.Text != "")
                     {
-                        hotel = new Hotel();
-                    }
-                    hotel.Name = tbNameHotel.Text;
-                    hotel.CountOfStars = Convert.ToInt32(tbCountStars.Text);
-                    hotel.CountryCode = Convert.ToString(cbCountry.SelectedValue);
-                    hotel.Description = Convert.ToString(tbDescription.Text);
-                    if (flag == false)
-                    {
-                        DataBase.Base.Hotel.Add(hotel);
-                    }
-                    DataBase.Base.SaveChanges();
-                    if (flag == true)
-                    {
-                        MessageBox.Show("Запись изменена!");
+                        if (tbDescription.Text != "")
+                        {
+                            if (cbCountry.SelectedIndex != -1)
+                            {
+                                if (flag == false)
+                                {
+                                    hotel = new Hotel();
+                                }
+                                hotel.Name = tbNameHotel.Text;
+                                hotel.CountOfStars = Convert.ToInt32(tbCountStars.Text);
+                                hotel.CountryCode = Convert.ToString(cbCountry.SelectedValue);
+                                hotel.Description = Convert.ToString(tbDescription.Text);
+                                if (flag == false)
+                                {
+                                    DataBase.Base.Hotel.Add(hotel);
+                                }
+                                DataBase.Base.SaveChanges();
+                                if (flag == true)
+                                {
+                                    MessageBox.Show("Запись изменена!");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Запись добавлена!");
+                                }
+                                ClassFrame.frameL.Navigate(new PageHotels());
+                            }
+                            else
+                            {
+                                MessageBox.Show("Выберите страну из списка!");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Заполните поле Описание отеля!");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Запись добавлена!");
+                        MessageBox.Show("Заполните поле Количество звезд отеля!");
                     }
-                    ClassFrame.frameL.Navigate(new PageHotels());
-                //}
+                }
+                else
+                {
+                    MessageBox.Show("Заполните поле Наименование отеля!");
+                }
             }
             catch
             {
