@@ -37,17 +37,43 @@ namespace Фасхиева_ПР12
             ClassFrame.frameL.Navigate(new AddUpdateHotel());
         }
 
-        private void btnBack_Click(object sender, RoutedEventArgs e)
+        private void btnBack_Click(object sender, RoutedEventArgs e) 
         {
             ClassFrame.frameL.Navigate(new PageTours());
         }
 
-        private void btnDeleteHotel_Click(object sender, RoutedEventArgs e)
+        private void btnDeleteHotel_Click(object sender, RoutedEventArgs e) //удаление отелей
         {
+            if (dgHotel.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Не выбран ни один отель!");
+            }
+            else
+            {                
+                foreach (Hotel hotel in dgHotel.SelectedItems)
+                {
+                    List<HotelOfTour> HTour = DataBase.Base.HotelOfTour.Where(x => x.HotelId == hotel.Id).ToList();
+                    foreach (HotelOfTour hotelOfTour in HTour)
+                    {
+                        if(hotelOfTour.Tour.IsActual == true)
+                        {
+                            MessageBox.Show($"Данный отель не может быть удален, так как находится в числе подходящих отелей для актуальных туров");
+                        }                       
+                    }
+                    //удаление отеля
+                    if (MessageBox.Show("Вы уверены, что хотите удалить отель?", "Удаление отеля", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                    {
+                        DataBase.Base.Hotel.Remove(hotel);
+                        MessageBox.Show("Успешное удаление отелей!");
+                        DataBase.Base.SaveChanges();
+                        ClassFrame.frameL.Navigate(new PageHotels());
+                    }
+                }
+            }
 
         }
 
-        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        private void btnUpdate_Click(object sender, RoutedEventArgs e) //обновление отеля
         {
             Button btn = (Button)sender;
             int index = Convert.ToInt32(btn.Uid);

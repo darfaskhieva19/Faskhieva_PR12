@@ -57,8 +57,8 @@ namespace Фасхиева_ПР12
         {
             try
             {
-                if (tbNameHotel.Text != "" && tbCountStars.Text != "" && tbDescription.Text != "" && cbCountry.SelectedIndex != 0)
-                {
+                //if (tbNameHotel.Text != "" && tbCountStars.Text != "" && tbDescription.Text != "" && cbCountry.SelectedIndex != 0)
+                //{
                     if (flag == false)
                     {
                         hotel = new Hotel();
@@ -81,11 +81,7 @@ namespace Фасхиева_ПР12
                         MessageBox.Show("Запись добавлена!");
                     }
                     ClassFrame.frameL.Navigate(new PageHotels());
-                }
-                else
-                {
-                    MessageBox.Show("Что-то пошло не так");
-                }
+                //}
             }
             catch
             {
