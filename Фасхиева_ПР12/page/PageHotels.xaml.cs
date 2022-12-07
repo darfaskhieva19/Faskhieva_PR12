@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Фасхиева_ПР12;
 
 namespace Фасхиева_ПР12
 {
@@ -22,7 +23,7 @@ namespace Фасхиева_ПР12
     public partial class PageHotels : Page
     {
         ClassChange pc = new ClassChange();
-        List<Hotel> lHotel = new List<Hotel>();
+        List<Hotel> lHotel;
         public PageHotels()
         {
             InitializeComponent();
@@ -72,7 +73,6 @@ namespace Фасхиева_ПР12
             }
 
         }
-
         private void btnUpdate_Click(object sender, RoutedEventArgs e) //обновление отеля
         {
             Button btn = (Button)sender;
@@ -103,7 +103,7 @@ namespace Фасхиева_ПР12
                     pc.CurrentPage = Convert.ToInt32(tb.Text);
                     break;
             }
-            dgHotel.ItemsSource = lHotel.Skip(pc.CurrentPage * pc.CountPage -pc.CountPage).Take(pc.CountPage).ToList();  
+            dgHotel.ItemsSource = lHotel.Skip(pc.CurrentPage * pc.CountPage - pc.CountPage).Take(pc.CountPage).ToList();
         }
 
         private void PageCount_TextChanged(object sender, TextChangedEventArgs e)
