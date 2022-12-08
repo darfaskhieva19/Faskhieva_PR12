@@ -27,7 +27,7 @@
                     <TextBox Name="PageCount" TextChanged="PageCount_TextChanged" PreviewTextInput="PageCount_PreviewTextInput" Width="250" Height="30"/>
                 </GroupBox>
             </StackPanel>
-            <StackPanel Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center" Cursor="Hand">
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center">
                 <TextBlock Style="{StaticResource TBPage}" Name="tbFirstPages" Uid="first" Text=" &lt;&lt; " MouseDown="Page_MouseDown"/>
                 <TextBlock Style="{StaticResource TBPage}" Name="tbPrev" Uid="prev" Text=" &lt; " MouseDown="Page_MouseDown"/>
                 <TextBlock Style="{StaticResource TBPage}" Name="txt1" Uid="1" Text="{Binding  Path = NPage[0]}" Visibility="{Binding Visible[0]}" FontWeight="{Binding Bold[0]}" MouseDown="Page_MouseDown"/>
@@ -40,7 +40,7 @@
             </StackPanel>
         </Grid>
 
-        <DataGrid Name="dgHotel" Grid.Row="2" AutoGenerateColumns="False" CanUserAddRows="False" FontSize="14">
+        <DataGrid Name="dgHotel" Grid.Row="2" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" FontSize="14">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" Width="2*"/>
                 <DataGridTextColumn Header="Кол-во звезд" Binding="{Binding CountOfStars}" Width="1*"/>
